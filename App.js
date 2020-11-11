@@ -1,83 +1,71 @@
-import { StatusBar } from "expo-status-bar";
+// import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import homepage from "./Homepage";
-import news from "./News";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
+import News from "./NewsFolder/News";
+import EkonomiNews from "./NewsFolder/EkonomiNews";
+import GayaHidupNews from "./NewsFolder/GayaHidupNews";
+import HiburanNews from "./NewsFolder/HiburanNews";
+import InternasionalNews from "./NewsFolder/InternasionalNews";
+import NasionalNews from "./NewsFolder/NasionalNews";
+import TeknologiNews from "./NewsFolder/TeknologiNews";
+import OlahragaNews from "./NewsFolder/OlahragaNews";
+import { FlatList } from "react-native-gesture-handler";
 
-function Detailscreen({ navigation }) {
-  return (
-    <View>
-      <Text>Details</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() => navigation.push("details")}
-      />
-      <Text>PopToTop</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() => navigation.popToTop()}
-      />
-      <Text>Details</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() => navigation.navigate("home")}
-      />
-    </View>
-  );
-}
-
-function homescreen({ navigation }) {
+function HomeScreen({ navigation }) {
   return (
     <SafeAreaView
-      style={{
-        backgroundColor: "0096c7",
-        flex: 1,
-      }}
+      style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
     >
-      <Text
-        style={{
-          fontSize: 20,
-        }}
-      >
-        HELLO!
-      </Text>
-    </SafeAreaView>
-  );
-}
-
-function Homescreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>HomeScreen</Text>
-      <Button title="Details" onPress={() => navigation.navigate("details")} />
-      <Text>Page Dos but in another file OwO</Text>
       <Button
-        title="homepage"
-        onPress={() => navigation.navigate("homepage")}
+        title="Semua kategori"
+        onPress={() => navigation.navigate("Berita")}
       />
-      <Text>News</Text>
-      <Button title="News" onPress={() => navigation.navigate("news")} />
-    </View>
+      <Button
+        title="Nasional"
+        onPress={() => navigation.navigate("Nasional")}
+      />
+      <Button
+        title="Internasional"
+        onPress={() => navigation.navigate("Internasional")}
+      />
+      <Button title="Ekonomi" onPress={() => navigation.navigate("Ekonomi")} />
+      <Button
+        title="Olahraga"
+        onPress={() => navigation.navigate("Olahraga")}
+      />
+      <Button
+        title="Teknologi"
+        onPress={() => navigation.navigate("Teknologi")}
+      />
+      <Button title="Hiburan" onPress={() => navigation.navigate("Hiburan")} />
+      <Button
+        title="Gaya Hidup"
+        onPress={() => navigation.navigate("GayaHidup")}
+      />
+    </SafeAreaView>
   );
 }
 
 const Stack = createStackNavigator();
 
-function App() {
+export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={Homescreen} />
-        <Stack.Screen name="Home2" component={homescreen} />
-        <Stack.Screen name="details" component={Detailscreen} />
-        <Stack.Screen name="homepage" component={homepage} />
-        <Stack.Screen name="news" component={news} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Berita" component={News} />
+        <Stack.Screen name="Nasional" component={NasionalNews} />
+        <Stack.Screen name="Internasional" component={InternasionalNews} />
+        <Stack.Screen name="Ekonomi" component={EkonomiNews} />
+        <Stack.Screen name="Olahraga" component={OlahragaNews} />
+        <Stack.Screen name="Teknologi" component={TeknologiNews} />
+        <Stack.Screen name="Hiburan" component={HiburanNews} />
+        <Stack.Screen name="GayaHidup" component={GayaHidupNews} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-export default App;
